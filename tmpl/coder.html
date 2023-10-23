@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{.fileName}}</title>
+    <style>
+        /* 设置代码块样式 */
+        pre {
+            background-color: #f8f8f8;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+            overflow-x: auto;
+        }
+
+        /* 设置代码高亮样式 */
+        code {
+            font-family: "Courier New", Courier, monospace;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .keyword {
+            color: #0077aa;
+            font-weight: bold;
+        }
+
+        .string {
+            color: #dd1144;
+        }
+
+        .comment {
+            color: #999;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/highlight.min.js"></script>
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/solarized-dark.min.css">
+    <script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body>
+
+<textarea id="code">
+{{.codeContent}}
+</textarea>
+
+<div id="preview"></div>
+<script>
+    window.onload = function () {
+        // 获取代码块内容并进行高亮处理
+        let code = document.getElementById("code").value;
+        let highlightedCode = hljs.highlightAuto(code).value;
+
+        // 构造代码块元素
+        let pre = document.createElement("pre");
+        let codeBlock = document.createElement("code");
+
+        codeBlock.classList.add("language-" + hljs.highlightAuto(code).language);
+        // 设置代码块内容
+        codeBlock.innerHTML = highlightedCode;
+        pre.appendChild(codeBlock);
+        // 将代码块插入预览区域
+        document.getElementById("preview").appendChild(pre);
+
+        document.getElementById("code").remove()
+    }
+</script>
+</body>
+</html>
