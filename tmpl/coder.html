@@ -33,11 +33,15 @@
         .comment {
             color: #999;
         }
+
     </style>
-    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/highlight.min.js"></script>
-    <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/solarized-dark.min.css">
-    <script>hljs.initHighlightingOnLoad();</script>
+    <link rel="stylesheet" href="{{.staticPath}}/static/libs/highlight/css/default.min.css">
+    <script src="{{.staticPath}}/static/libs/highlight/js/highlight.min.js"></script>
+
+    <!-- and it's easy to individually load additional languages -->
+    <script src="{{.staticPath}}/static/libs/highlight/js/go.min.js"></script>
+
+    <script>hljs.highlightAll();</script>
 </head>
 <body>
 
@@ -46,6 +50,9 @@
 </textarea>
 
 <div id="preview"></div>
+
+</body>
+
 <script>
     window.onload = function () {
         // 获取代码块内容并进行高亮处理
@@ -66,5 +73,4 @@
         document.getElementById("code").remove()
     }
 </script>
-</body>
 </html>
